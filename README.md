@@ -26,7 +26,7 @@ var posts = new Posts();
 
 ##### Add and remove models
 
-```
+```js
 var post = new Post();
 
 // Append the post
