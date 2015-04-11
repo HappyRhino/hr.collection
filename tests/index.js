@@ -50,8 +50,11 @@ describe('Collection', function() {
 
             expect(c.size()).to.equal(1);
         });
+    });
 
-        it('should correctly use "comparator"', function() {
+    describe('comparator', function() {
+
+        it('should correctly accept a string', function() {
             var C = Collection.extend({
                 'comparator': "i"
             });
@@ -71,6 +74,30 @@ describe('Collection', function() {
             expect(c.at(1).get("i")).to.equal(3);
             expect(c.at(2).get("i")).to.equal(5);
         });
+
+        it('should correctly accept a function', function() {
+            var C = Collection.extend({
+                'comparator': function(m) {
+                    return Math.sin(m.get("i"));
+                }
+            });
+            var c = new C();
+
+            c.add({
+                'i': 1
+            });
+            c.add({
+                'i': 2
+            });
+            c.add({
+                'i': 3
+            });
+
+            expect(c.at(0).get("i")).to.equal(3);
+            expect(c.at(1).get("i")).to.equal(1);
+            expect(c.at(2).get("i")).to.equal(2);
+        });
+
     });
 
 });
