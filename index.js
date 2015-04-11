@@ -93,7 +93,9 @@ var Collection = Class.extend({
         if (!this.comparator) throw new Error('Cannot sort a set without a comparator');
         options = options || {};
         if (_.isString(this.comparator) || this.comparator.length === 1) {
-            this.models = this.sortBy(this.comparator, this);
+            this.models = this.sortBy(function(m) {
+                return m.get(this.comparator);
+            }, this);
         } else {
             this.models.sort(_.bind(this.comparator, this));
         }

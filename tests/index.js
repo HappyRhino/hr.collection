@@ -50,6 +50,27 @@ describe('Collection', function() {
 
             expect(c.size()).to.equal(1);
         });
+
+        it('should correctly use "comparator"', function() {
+            var C = Collection.extend({
+                'comparator': "i"
+            });
+            var c = new C();
+
+            c.add({
+                'i': 3
+            });
+            c.add({
+                'i': 2
+            });
+            c.add({
+                'i': 5
+            });
+
+            expect(c.at(0).get("i")).to.equal(2);
+            expect(c.at(1).get("i")).to.equal(3);
+            expect(c.at(2).get("i")).to.equal(5);
+        });
     });
 
 });
