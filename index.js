@@ -1,4 +1,4 @@
-var _ = require("hr.utils");
+var _ = require("lodash");
 var Class = require("hr.class");
 var Model = require("hr.model");
 
