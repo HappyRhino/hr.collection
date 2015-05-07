@@ -53,3 +53,36 @@ posts.on("remove", function(model) { });
 // When the collection is reset
 posts.on("reset", function() { });
 ```
+
+### Example with React
+
+```js
+var React = require('react');
+var Collection = require("hr.collection");
+
+var Users = Collection.extend({
+
+});
+
+var UserItem = React.createClass({
+    render: function() {
+        return <li>{this.props.user.get('username')}</li>;
+    }
+});
+
+var UsersList= React.createClass({
+    componentWillMount : function() {
+        this.props.users.on("all", this.forceUpdate.bind(this));
+    },
+    componentWillUnmount : function() {
+        this.props.users.off("all", this.forceUpdate.bind(this));
+    },
+    render: function() {
+        var users = this.props.users.map(function(user) {
+            return <UserItem user={user} />;
+        });
+
+        return <ul className="users">{users}</ul>;
+    }
+});
+```
