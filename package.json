@@ -1,7 +1,7 @@
 {
     "name": "hr.collection",
     "description": "Data modeling using Collections",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "peerDependencies": {
         "lodash": "*",
         "hr.model": ">=1.0.0",
